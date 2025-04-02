@@ -25,25 +25,55 @@ title="Easy editing stylesheet" ?>
 			<example correction="" type="incorrect"><marker>tong</marker></example>
 			<example type="correct"></example>
 		</rule>
+
+		<!--Error 4 Sakin to sa akin-->
 		<rule>
 			<pattern case_sensitive="no" mark_from="0">
 				<token regexp="yes">\b[A-Za-z]+\b</token>
 				<token>sakin</token>
 			</pattern>
 			<message><suggestion>sa akin</suggestion></message>
-			<short>Replace "sakin" with "sa akin</short>
+			<short>Replace "sakin" with "sa akin"</short>
 			<example correction="sa akin" type="incorrect"><marker>sakin</marker></example>
 			<example type="correct">sa akin</example>
 		</rule>
+
+		<!--Error 6 Pwede to Puwede-->
 		<rule>
 			<pattern case_sensitive="no" mark_from="0">
 				<token regexp="yes">\b[A-Za-z]+\b</token>
-				<token>sakin</token>
+				<token>pwede</token>
 			</pattern>
-			<message><suggestion>sa akin</suggestion></message>
-			<short>Replace "sakin" with "sa akin</short>
-			<example correction="sa akin" type="incorrect"><marker>sakin</marker></example>
-			<example type="correct">sa akin</example>
+			<message><suggestion>puwede</suggestion></message>
+			<short>Replace "pwede" with "puwede"</short>
+			<example correction="puwede" type="incorrect"><marker>sakin</marker></example>
+			<example type="correct">puwede</example>
 		</rule>
+		<!--Error 7 Lang to Lamang-->
+		<rule>
+			<pattern case_sensitive="no" mark_from="0">
+				<token regexp="yes">\b[A-Za-z]+\b</token>
+				<token>lang</token>
+			</pattern>
+			<message><suggestion>lamang</suggestion></message>
+			<short>Use "lamang" instead of "lang"</short>
+			<example correction="lamang" type="incorrect"><marker>sakin</marker></example>
+			<example type="correct">lamang</example>
+		</rule>
+	</category>
+	<category name="Word change based on context">
+		<!--Error 5 Kung and Kapag-->
+		<rule>
+			<pattern case_sensitive="no" mark_from="0">
+				<token regexp="yes">\bkapag\b</token>
+				<token regexp="yes">\b(kung|kapag)\b</token>
+			</pattern>
+			<message><suggestion>Use "kapag" when sure (when) and "kapag" if unsure (if)</suggestion></message>
+			<short>Distinguish between "kapag" and "kung"</short>
+			<example correction="when" type="incorrect"><marker>Kung</marker> dumating ka, simula na tayo.</example>
+			<example type="correct">Kapag dumating ka, simula na tayo.</example>
+		</rule>
+		
+
 	</category>
 </rules>
