@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../print.xsl" ?>
+<?xml-stylesheet type="text/css" href="../rules.css" 
+title="Easy editing stylesheet" ?>
+
+<rules lang="tl" xsi:noNamespaceSchemaLocation="../rules.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<category name="Sound and Letter Change">
+		<rule id="DE_KAHON" name="de_kahon (de-kahon)">
+			<pattern case_sensitive="no" mark_from="0">
+				<token>de</token>
+				<token>kahon</token>
+			</pattern>
+			<message><suggestion>\1-\2</suggestion></message>
+			<short>Gitling</short>
+			<example correction="de-kahon" type="incorrect"><marker>de kahon</marker></example>
+			<example type="correct"><marker>de kahon</marker></example>
+		</rule>
+		<rule>
+			<pattern case_sensitive="no" mark_from="0">
+				<token regexp="yes">\b[A-Za-z]+\b</token>
+				<token>tong</token>
+			</pattern>
+			<message><suggestion>'\2</suggestion><suggestion>i\2</suggestion></message>
+			<short>Proper use of tong</short>
+			<example correction="" type="incorrect"><marker>tong</marker></example>
+			<example type="correct"></example>
+		</rule>
+		
+	</category>
+</rules>
