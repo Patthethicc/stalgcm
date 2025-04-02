@@ -25,6 +25,25 @@ title="Easy editing stylesheet" ?>
 			<example correction="" type="incorrect"><marker>tong</marker></example>
 			<example type="correct"></example>
 		</rule>
-		
+		<rule>
+			<pattern case_sensitive="no" mark_from="0">
+				<token regexp="yes">\b[A-Za-z]+\b</token>
+				<token>sakin</token>
+			</pattern>
+			<message><suggestion>sa akin</suggestion></message>
+			<short>Replace "sakin" with "sa akin</short>
+			<example correction="sa akin" type="incorrect"><marker>sakin</marker></example>
+			<example type="correct">sa akin</example>
+		</rule>
+		<rule>
+			<pattern case_sensitive="no" mark_from="0">
+				<token regexp="yes">\b[A-Za-z]+\b</token>
+				<token>sakin</token>
+			</pattern>
+			<message><suggestion>sa akin</suggestion></message>
+			<short>Replace "sakin" with "sa akin</short>
+			<example correction="sa akin" type="incorrect"><marker>sakin</marker></example>
+			<example type="correct">sa akin</example>
+		</rule>
 	</category>
 </rules>
