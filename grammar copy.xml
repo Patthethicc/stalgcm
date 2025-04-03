@@ -1,79 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../print.xsl" ?>
-<?xml-stylesheet type="text/css" href="../rules.css" 
-title="Easy editing stylesheet" ?>
+<?xml-stylesheet type="text/css" href="../rules.css" title="Easy editing stylesheet" ?>
 
-<rules lang="tl" xsi:noNamespaceSchemaLocation="../rules.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<category name="Sound and Letter Change">
-		<rule id="DE_KAHON" name="de_kahon (de-kahon)">
-			<pattern case_sensitive="no" mark_from="0">
-				<token>de</token>
-				<token>kahon</token>
+<rules lang="tl" xsi:noNamespaceSchemaLocation="../rules.xsd" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <category name="Sound and Letter Change">
+		<rule id="NG_TO_NANG" name="ng vs nang">
+			<pattern case_sensitive="no" mark_from="1">
+				<token>ng</token>
+				<token regexp="yes">(kum|mag|ma|um|nag|na|tum)[a-z]+</token>
 			</pattern>
-			<message><suggestion>\1-\2</suggestion></message>
-			<short>Gitling</short>
-			<example correction="de-kahon" type="incorrect"><marker>de kahon</marker></example>
-			<example type="correct"><marker>de kahon</marker></example>
-		</rule>
-		<rule>
-			<pattern case_sensitive="no" mark_from="0">
-				<token regexp="yes">\b[A-Za-z]+\b</token>
-				<token>tong</token>
-			</pattern>
-			<message><suggestion>'\2</suggestion><suggestion>i\2</suggestion></message>
-			<short>Proper use of tong</short>
-			<example correction="" type="incorrect"><marker>tong</marker></example>
+			<message><suggestion>Use nang if it ends with a verb or an adverb instead of ng.</suggestion></message>
+			<short>Proper use of ng and nang</short>
+			<example correction="nang" type="incorrect"> Tumahimik ang mga estudyante <marker>ng</marker> nakarting ang guro.</example>
+			<example type="correct">Tumahimik ang mga estudyante <marker>nang</marker> nakarating ang guro.</example>
+			<example correction="nang" type="incorrect"> <marker>Ng</marker> makain niya ang hilaw na karne, sumakit ang kaniyang tiyan.</example>
+			<example type="correct"><marker>Nang</marker> makain niya ang hilaw na karne, sumakit ang kaniyang tiyan.</example>
+			<example correction="nang" type="incorrect"> Paluin mo <marker>ng</marker> malakas.</example>
+			<example type="correct"> Paluin mo <marker>nang</marker> malakas.</example>
+			<example correction="nang" type="incorrect"> Natalisod siya <marker>ng</marker> tumakbo siya.</example>
+			<example type="correct"> Natalisod siya <marker>nang</marker> tumakbo siya.</example>
+			<example correction="nang" type="incorrect"> Sinasayaw niya <marker>ng</marker> mabagal</example>
 			<example type="correct"></example>
 		</rule>
 
-		<!--Error 4 Sakin to sa akin-->
-		<rule>
-			<pattern case_sensitive="no" mark_from="0">
-				<token regexp="yes">\b[A-Za-z]+\b</token>
-				<token>sakin</token>
-			</pattern>
-			<message><suggestion>sa akin</suggestion></message>
-			<short>Replace "sakin" with "sa akin"</short>
-			<example correction="sa akin" type="incorrect"><marker>sakin</marker></example>
-			<example type="correct">sa akin</example>
-		</rule>
+        <rule id="TONG_TO_ITONG" name="tong to itong/'tong">
+            <pattern case_sensitive="no" mark_from="1">
+                <token regexp="yes">\b[A-Za-z]+\b</token>
+                <token>tong</token>
+            </pattern>
+            <message><suggestion>Use 'tong or itong instead of tong</suggestion></message>
+            <short>Proper use of tong</short>
+            <example correction="'tong" type="incorrect">Saan na ba <marker>tong</marker> laruan ko?</example>
+            <example type="correct">Saan na ba <marker>'tong</marker> laruan ko?</example>
+            <example correction="itong" type="incorrect">Kamukha mo <marker>tong</marker> babae kong kaklase.</example>
+            <example type="correct">Kamukha mo <marker>itong</marker> babae kong kaklase.</example>
+        </rule>
 
-		<!--Error 6 Pwede to Puwede-->
-		<rule>
-			<pattern case_sensitive="no" mark_from="0">
-				<token regexp="yes">\b[A-Za-z]+\b</token>
-				<token>pwede</token>
-			</pattern>
-			<message><suggestion>puwede</suggestion></message>
-			<short>Replace "pwede" with "puwede"</short>
-			<example correction="puwede" type="incorrect"><marker>sakin</marker></example>
-			<example type="correct">puwede</example>
-		</rule>
-		<!--Error 7 Lang to Lamang-->
-		<rule>
-			<pattern case_sensitive="no" mark_from="0">
-				<token regexp="yes">\b[A-Za-z]+\b</token>
-				<token>lang</token>
-			</pattern>
-			<message><suggestion>lamang</suggestion></message>
-			<short>Use "lamang" instead of "lang"</short>
-			<example correction="lamang" type="incorrect"><marker>sakin</marker></example>
-			<example type="correct">lamang</example>
-		</rule>
-	</category>
-	<category name="Word change based on context">
-		<!--Error 5 Kung and Kapag-->
-		<rule>
-			<pattern case_sensitive="no" mark_from="0">
-				<token regexp="yes">\bkapag\b</token>
-				<token regexp="yes">\b(kung|kapag)\b</token>
-			</pattern>
-			<message><suggestion>Use "kapag" when sure (when) and "kapag" if unsure (if)</suggestion></message>
-			<short>Distinguish between "kapag" and "kung"</short>
-			<example correction="when" type="incorrect"><marker>Kung</marker> dumating ka, simula na tayo.</example>
-			<example type="correct">Kapag dumating ka, simula na tayo.</example>
-		</rule>
-		
+        <rule id="SAKIN_TO_SA_AKIN" name="sakin to sa akin">
+            <pattern case_sensitive="no" mark_from="0">
+                <token regexp="yes">\b[A-Za-z]+\b</token>
+                <token>sakin</token>
+            </pattern>
+            <message><suggestion>sa akin</suggestion></message>
+            <short>Replace "sakin" with "sa akin"</short>
+            <example correction="sa akin" type="incorrect"><marker>sakin</marker></example>
+            <example type="correct">sa akin</example>
+        </rule>
 
-	</category>
+        <rule id="PWEDE_TO_PUWEDE" name="pwede to puwede">
+            <pattern case_sensitive="no" mark_from="0">
+                <token regexp="yes">\b[A-Za-z]+\b</token>
+                <token>pwede</token>
+            </pattern>
+            <message><suggestion>Replace "pwede" with "puwede"</suggestion></message>
+            <short>Replace "pwede" with "puwede"</short>
+            <example correction="puwede" type="incorrect"><marker>pwede</marker></example>
+            <example type="correct">puwede</example>
+        </rule>
+
+        <rule id="LANG_TO_LAMANG" name="lang to lamang">
+            <pattern case_sensitive="no" mark_from="0">
+                <token regexp="yes">\b[A-Za-z]+\b</token>
+                <token>lang</token>
+            </pattern>
+            <message><suggestion>Use "lamang" instead of "lang"</suggestion></message>
+            <short>Use "lamang" instead of "lang"</short>
+            <example correction="lamang" type="incorrect"><marker>lang</marker></example>
+            <example type="correct">lamang</example>
+        </rule>
+    </category>
+    
+    <category name="Word change based on context">
+        <rule id="KUNG_AND_KAPAG" name="kung and kapag">
+            <pattern case_sensitive="no" mark_from="0">
+                <token regexp="yes">\b(kung|kapag)\b</token>
+            </pattern>
+            <message><suggestion>Use "kapag" for certainty (when) and "kung" for uncertainty (if)</suggestion></message>
+            <short>Distinguish between "kapag" and "kung"</short>
+            <example correction="Kapag" type="incorrect"><marker>Kung</marker> dumating ka, simula na tayo.</example>
+            <example type="correct">Kapag dumating ka, simula na tayo.</example>
+        </rule>
+    </category>
 </rules>
